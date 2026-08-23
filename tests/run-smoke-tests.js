@@ -26,8 +26,13 @@ async function run() {
     assert.ok(extContent.includes("nix-js-language-server"), "extension.js should reference the LSP server");
     console.log("✓ extension.js structure correct");
 
-    // 2. LSP server module resolves (bundled in server/ directory)
-    const serverPath = path.join(ROOT, "server", "server.js");
+    // 2. LSP server module resolves (from npm or bundled)
+    let serverPath;
+    try {
+        serverPath = require.resolve("@deijose/nix-js-language-server/dist/server.js");
+    } catch {
+        serverPath = path.join(ROOT, "server", "server.js");
+    }
     assert.ok(fs.existsSync(serverPath), `LSP server should exist at ${serverPath}`);
     console.log("✓ LSP server module resolves:", path.relative(ROOT, serverPath));
 
@@ -51,6 +56,7 @@ async function run() {
 
     // 5. package.json structure
     const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf8"));
+    assert.ok(pkg.dependencies["@deijose/nix-js-language-server"], "Should depend on @deijose/nix-js-language-server");
     assert.ok(pkg.dependencies["vscode-languageclient"], "Should depend on vscode-languageclient");
     assert.ok(pkg.dependencies["vscode-languageserver"], "Should depend on vscode-languageserver");
     assert.ok(pkg.dependencies["vscode-languageserver-textdocument"], "Should depend on vscode-languageserver-textdocument");

@@ -33,6 +33,7 @@
     "publish:marketplace": "npm run bundle:server && vsce publish"
   },
   "dependencies": {
+    "@deijose/nix-js-language-server": "^1.0.0",
     "vscode-languageclient": "^9.0.1",
     "vscode-languageserver": "^9.0.1",
     "vscode-languageserver-textdocument": "^1.0.11",

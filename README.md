@@ -6,7 +6,7 @@ Editor tooling for [Nix.js](https://www.npmjs.com/package/@deijose/nix-js): synt
 
 This extension is a **thin LSP client** that launches [`@deijose/nix-js-language-server`](https://www.npmjs.com/package/@deijose/nix-js-language-server). All editor intelligence (diagnostics, completion, hover, code actions, formatting) lives in the LSP server, which also powers Neovim, Helix, Zed, and Emacs.
 
-```
+```text
 vscode-nix-js (this extension)
 ├── extension.js          ← thin LSP client (~95 lines)
 ├── syntaxes/*.json       ← TextMate grammars (VS Code native)
@@ -56,7 +56,7 @@ function App() {
 ## Settings
 
 | Setting | Default | Description |
-|---|---|---|
+| --- | --- | --- |
 | `nixjs.tags` | `["html"]` | Template tag names where Nix autocomplete should be active |
 | `nixjs.completions.enableEventBindings` | `true` | Enable `@event` completion items |
 | `nixjs.completions.enableModifierSuggestions` | `true` | Enable `.modifier` suggestions |

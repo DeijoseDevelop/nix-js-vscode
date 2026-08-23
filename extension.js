@@ -23,6 +23,7 @@ function activate(context) {
         // Fallback: bundled server in extension directory
         serverModule = require.resolve("./server/server.js");
     }
+    // Prefer npm-installed server, fallback to bundled copy
 
     const serverOptions = {
         run: { module: serverModule, transport: TransportKind.ipc },
