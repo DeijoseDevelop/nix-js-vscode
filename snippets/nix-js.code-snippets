@@ -1,0 +1,68 @@
+{
+  "Nix component function": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "nix:component",
+    "body": [
+      "function ${1:ComponentName}() {",
+      "  const ${2:count} = signal(0);",
+      "  return html`",
+      "    <section>",
+      "      <h2>${1:ComponentName}</h2>",
+      "      <p>\\${() => ${2:count}.value}</p>",
+      "      <button @click=\\${() => ${2:count}.value++}>+1</button>",
+      "    </section>",
+      "  `;",
+      "}"
+    ],
+    "description": "Create a function component with signal + html template"
+  },
+  "Nix effect with cleanup": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "nix:effect-cleanup",
+    "body": [
+      "effect(() => {",
+      "  ${1:const handler = () => {}}",
+      "  document.addEventListener('${2:click}', handler);",
+      "",
+      "  return () => {",
+      "    document.removeEventListener('${2:click}', handler);",
+      "  };",
+      "});"
+    ],
+    "description": "Effect pattern with listener cleanup"
+  },
+  "Nix computed": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "nix:computed",
+    "body": [
+      "const ${1:doubleCount} = computed(() => {",
+      "  return ${2:count}.value * 2;",
+      "});"
+    ],
+    "description": "Create a pure computed value"
+  },
+  "Nix router bootstrap": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "nix:router",
+    "body": [
+      "const router = createRouter([",
+      "  { path: '/', component: () => ${1:HomePage}() },",
+      "  { path: '/${2:about}', component: () => ${3:AboutPage}() }",
+      "]);"
+    ],
+    "description": "Create a basic Nix router"
+  },
+  "Nix store with actions": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "nix:store",
+    "body": [
+      "const store = createStore(",
+      "  { ${1:count}: 0 },",
+      "  (s) => ({",
+      "    increment: () => s.${1:count}.value++",
+      "  })",
+      ");"
+    ],
+    "description": "Create a store with actions"
+  }
+}

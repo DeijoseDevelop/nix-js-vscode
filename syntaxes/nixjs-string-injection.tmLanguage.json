@@ -1,0 +1,65 @@
+{
+    "fileTypes": [],
+    "scopeName": "inline.html.nixjs.string.injection",
+    "injectionSelector": "L:meta.embedded.block.html meta.tag",
+    "patterns": [
+        {
+            "include": "source.ts#template-substitution-element"
+        },
+        {
+            "include": "source.js#template-substitution-element"
+        },
+        {
+            "include": "#nix-event-binding"
+        },
+        {
+            "include": "#nix-directive-attribute"
+        }
+    ],
+    "repository": {
+        "nix-event-binding": {
+            "begin": "(^|\\s)(@)([a-zA-Z][a-zA-Z0-9:-]*)",
+            "beginCaptures": {
+                "2": {
+                    "name": "punctuation.definition.event.nix"
+                },
+                "3": {
+                    "name": "entity.other.attribute-name.event.base.nix"
+                }
+            },
+            "end": "(\\s*=)",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.separator.key-value.html"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#nix-event-modifier"
+                }
+            ]
+        },
+        "nix-event-modifier": {
+            "match": "(\\.)([a-zA-Z][a-zA-Z0-9-]*)",
+            "captures": {
+                "1": {
+                    "name": "punctuation.separator.event-modifier.nix"
+                },
+                "2": {
+                    "name": "entity.other.attribute-name.event.modifier.nix"
+                }
+            }
+        },
+        "nix-directive-attribute": {
+            "match": "(^|\\s)(ref|show|hide)(\\s*=)",
+            "captures": {
+                "2": {
+                    "name": "entity.other.attribute-name.directive.nix"
+                },
+                "3": {
+                    "name": "punctuation.separator.key-value.html"
+                }
+            }
+        }
+    }
+}

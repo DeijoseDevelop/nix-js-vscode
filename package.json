@@ -1,0 +1,203 @@
+{
+  "name": "vscode-nix-js",
+  "displayName": "Nix-js VS Code Toolkit",
+  "description": "Syntax highlighting, html` template support, event completions (@click, @input), diagnostics, quick fixes, formatting, and snippets for Nix.js.",
+  "version": "0.6.0",
+  "publisher": "DeijoseDevelop",
+  "main": "./extension.js",
+  "author": {
+    "name": "Deiver Vasquez"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DeijoseDevelop/nix-js-vscode"
+  },
+  "homepage": "https://nix-js.dev/",
+  "bugs": {
+    "url": "https://github.com/DeijoseDevelop/nix-js-vscode/issues"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact"
+  ],
+  "scripts": {
+    "test": "node ./tests/run-smoke-tests.js",
+    "bundle:server": "rm -rf server && mkdir -p server && cp -r ../nix-js-language-server/dist/* server/",
+    "package": "npm run bundle:server && vsce package",
+    "publish:marketplace": "npm run bundle:server && vsce publish"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.11",
+    "vscode-uri": "^3.0.8"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.2.2"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Formatters"
+  ],
+  "keywords": [
+    "nix-js",
+    "html",
+    "tagged template",
+    "template literal",
+    "syntax highlighting",
+    "signals",
+    "snippet",
+    "autocomplete",
+    "event modifiers",
+    "formatter",
+    "micro-framework",
+    "lsp",
+    "language server"
+  ],
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#1a1a2e",
+    "theme": "dark"
+  },
+  "contributes": {
+    "grammars": [
+      {
+        "injectTo": [
+          "source.js",
+          "source.js.jsx",
+          "source.jsx",
+          "source.ts",
+          "source.tsx",
+          "text.html.basic"
+        ],
+        "scopeName": "inline.html.nixjs",
+        "path": "./syntaxes/nixjs.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.html": "html"
+        }
+      },
+      {
+        "injectTo": [
+          "source.js",
+          "source.js.jsx",
+          "source.jsx",
+          "source.ts",
+          "source.tsx",
+          "text.html.basic"
+        ],
+        "scopeName": "inline.html.nixjs.string.injection",
+        "path": "./syntaxes/nixjs-string-injection.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.template.expression.ts": "typescript"
+        }
+      },
+      {
+        "injectTo": [
+          "source.js",
+          "source.js.jsx",
+          "source.jsx",
+          "source.ts",
+          "source.tsx",
+          "text.html.basic"
+        ],
+        "scopeName": "inline.html.nixjs.style.injection",
+        "path": "./syntaxes/nixjs-style-injection.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.template.expression.ts": "typescript"
+        }
+      }
+    ],
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/nix-js.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/nix-js.code-snippets"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/nix-js.code-snippets"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/nix-js.code-snippets"
+      }
+    ],
+    "commands": [
+      {
+        "command": "nixjs.inspectScopes",
+        "title": "Nix.js: Inspect Template Scopes"
+      },
+      {
+        "command": "nixjs.formatTemplates",
+        "title": "Nix.js: Format html`` Templates"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "nixjs.inspectScopes",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "nixjs.formatTemplates",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(js|ts|jsx|tsx)$/"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Nix.js Toolkit",
+      "properties": {
+        "nixjs.tags": {
+          "type": "array",
+          "default": [
+            "html"
+          ],
+          "description": "Template tag names where Nix autocomplete should be active.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "nixjs.completions.enableEventBindings": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable @event completion items inside html tagged templates."
+        },
+        "nixjs.completions.enableModifierSuggestions": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable chained event modifier suggestions, e.g. @click.prevent or @keydown.enter."
+        },
+        "nixjs.diagnostics.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable diagnostics for invalid or conflicting event modifier combinations."
+        },
+        "nixjs.diagnostics.enableStyleHints": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable informational style hints, such as canonical modifier order suggestions."
+        },
+        "nixjs.format.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the Nix.js html`` template formatter."
+        },
+        "nixjs.format.formatOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically format html`` templates when saving a file, even if another formatter is set as default."
+        }
+      }
+    }
+  }
+}

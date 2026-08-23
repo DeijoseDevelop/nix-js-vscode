@@ -1,0 +1,6 @@
+server/**/*.d.ts
+server/**/*.d.ts.map
+server/**/*.js.map
+tests/fixtures/**
+tests/SMOKE_TESTS.md
+RELEASE_1_0_0_CHECKLIST.md

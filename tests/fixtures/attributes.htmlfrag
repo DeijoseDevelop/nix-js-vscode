@@ -1,0 +1,1 @@
+<div class=${() => "ok"} @keydown.enter.stop=${() => go()} @click.prevent=${() => go()} ref=${el} show=${visible} hide=${hidden}></div>
