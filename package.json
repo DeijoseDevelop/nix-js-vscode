@@ -2,7 +2,7 @@
   "name": "vscode-nix-js",
   "displayName": "Nix-js VS Code Toolkit",
   "description": "Syntax highlighting, html` template support, event completions (@click, @input), diagnostics, quick fixes, formatting, and snippets for Nix.js.",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "publisher": "DeijoseDevelop",
   "main": "./extension.js",
   "author": {
@@ -33,7 +33,7 @@
     "publish:marketplace": "npm run bundle:server && vsce publish"
   },
   "dependencies": {
-    "@deijose/nix-js-language-server": "^1.0.0",
+    "@deijose/nix-js-language-server": "^1.0.1",
     "vscode-languageclient": "^9.0.1",
     "vscode-languageserver": "^9.0.1",
     "vscode-languageserver-textdocument": "^1.0.11",

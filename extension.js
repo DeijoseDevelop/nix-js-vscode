@@ -19,11 +19,12 @@ function activate(context) {
         serverModule = require.resolve(
             "@deijose/nix-js-language-server/dist/server.js"
         );
+        console.log("[nix-js] LSP server resolved from npm:", serverModule);
     } catch {
         // Fallback: bundled server in extension directory
         serverModule = require.resolve("./server/server.js");
+        console.log("[nix-js] LSP server resolved from bundle:", serverModule);
     }
-    // Prefer npm-installed server, fallback to bundled copy
 
     const serverOptions = {
         run: { module: serverModule, transport: TransportKind.stdio },

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.2 — Fix completion with nested template literals
+
+- Fixed: completion stopped working when a `html\`\`` template contained nested template literals inside `${...}` expressions (e.g. `style=${() => \`color: red\`}`)
+- The template detector now uses `findTemplateRegions` to correctly identify the outer `html` template region even when inner backticks are present
+- Removed `diagnosticProvider` capability that caused "Unhandled method textDocument/diagnostic" errors — the server uses push diagnostics (`sendDiagnostics`) which is the correct model
+- Updated LSP dependency to `@deijose/nix-js-language-server@^1.0.1`
+
 ## 0.6.1 — Fix LSP transport (stdio)
 
 - Fixed: LSP server was using IPC transport which failed with ESM modules
