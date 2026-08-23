@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.3 — Rewrite formatter (tree-based, JSX-style)
+
+- **Formatter rewritten**: uses a proper AST/tree instead of flat token stream
+- Block elements with element children → always multi-line (like Prettier JSX)
+- Inline elements mixed with text → grouped on one line (greedy packing at MAX_WIDTH)
+- Sibling elements with only whitespace between them → each on its own line
+- Single-line templates that fit → kept inline (e.g. `html\`<span>text</span>\``)
+- Long attributes → wrapped to multiple lines with proper indentation
+- `<pre>`, `<script>`, `<style>` → content preserved as-is
+- Multi-line expressions → preserved with relative indentation
+- Tags preserve original case (supports custom elements like `<MyComponent>`)
+- Updated LSP dependency to `@deijose/nix-js-language-server@^1.0.2`
+
 ## 0.6.2 — Fix completion with nested template literals
 
 - Fixed: completion stopped working when a `html\`\`` template contained nested template literals inside `${...}` expressions (e.g. `style=${() => \`color: red\`}`)
