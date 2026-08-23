@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.1 — Fix LSP transport (stdio)
+
+- Fixed: LSP server was using IPC transport which failed with ESM modules
+- Changed to stdio transport — the standard for LSP servers
+- Completion, diagnostics, hover, code actions, and formatting now work correctly
+
 ## 0.6.0 — LSP Refactor (Thin Client)
 
 - **Breaking**: Extension is now a thin LSP client that launches `@deijose/nix-js-language-server`

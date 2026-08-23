@@ -2,7 +2,7 @@
   "name": "vscode-nix-js",
   "displayName": "Nix-js VS Code Toolkit",
   "description": "Syntax highlighting, html` template support, event completions (@click, @input), diagnostics, quick fixes, formatting, and snippets for Nix.js.",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "publisher": "DeijoseDevelop",
   "main": "./extension.js",
   "author": {

@@ -26,10 +26,10 @@ function activate(context) {
     // Prefer npm-installed server, fallback to bundled copy
 
     const serverOptions = {
-        run: { module: serverModule, transport: TransportKind.ipc },
+        run: { module: serverModule, transport: TransportKind.stdio },
         debug: {
             module: serverModule,
-            transport: TransportKind.ipc,
+            transport: TransportKind.stdio,
             options: { execArgv: ["--inspect=6009"] }
         }
     };
