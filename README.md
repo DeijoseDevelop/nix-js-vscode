@@ -1,6 +1,6 @@
 # Nix.js VS Code Toolkit
 
-Editor tooling for [Nix.js](https://www.npmjs.com/package/@deijose/nix-js): syntax highlighting for `html` tagged templates, event binding autocomplete, diagnostics, quick fixes, formatting, and snippets.
+Editor tooling for [Nix.js](https://www.npmjs.com/package/@deijose/nix-js): syntax highlighting for `html` tagged templates and `raw()` function-wrapped templates, event binding autocomplete, diagnostics, quick fixes, formatting, and snippets.
 
 ## Architecture
 
@@ -16,7 +16,7 @@ vscode-nix-js (this extension)
 
 ## Features
 
-- HTML highlighting inside `html` tagged template literals
+- HTML highlighting inside `html` tagged template literals and `raw()` function-wrapped templates
 - Event bindings highlighted as first-class attributes (`@click`, `@input`, `@submit`, ...)
 - Event modifier highlighting with dedicated scopes (`@click.prevent.stop`, `@keydown.enter`)
 - Template expressions (`${...}`) highlighted inside templates
@@ -57,7 +57,7 @@ function App() {
 
 | Setting | Default | Description |
 | --- | --- | --- |
-| `nixjs.tags` | `["html"]` | Template tag names where Nix autocomplete should be active |
+| `nixjs.tags` | `["html", "raw"]` | Template tag names where Nix autocomplete should be active (`html` tagged templates and `raw()` function-wrapped templates) |
 | `nixjs.completions.enableEventBindings` | `true` | Enable `@event` completion items |
 | `nixjs.completions.enableModifierSuggestions` | `true` | Enable `.modifier` suggestions |
 | `nixjs.diagnostics.enable` | `true` | Enable diagnostics for invalid modifier combinations |

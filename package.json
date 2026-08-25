@@ -1,8 +1,8 @@
 {
   "name": "vscode-nix-js",
   "displayName": "Nix-js VS Code Toolkit",
-  "description": "Syntax highlighting, html` template support, event completions (@click, @input), diagnostics, quick fixes, formatting, and snippets for Nix.js.",
-  "version": "0.6.3",
+  "description": "Syntax highlighting for html` and raw(``) templates, event completions (@click, @input), diagnostics, quick fixes, formatting, and snippets for Nix.js.",
+  "version": "0.7.0",
   "publisher": "DeijoseDevelop",
   "main": "./extension.js",
   "author": {
@@ -33,7 +33,7 @@
     "publish:marketplace": "npm run bundle:server && vsce publish"
   },
   "dependencies": {
-    "@deijose/nix-js-language-server": "^1.0.2",
+    "@deijose/nix-js-language-server": "^1.1.0",
     "vscode-languageclient": "^9.0.1",
     "vscode-languageserver": "^9.0.1",
     "vscode-languageserver-textdocument": "^1.0.11",
@@ -161,9 +161,10 @@
         "nixjs.tags": {
           "type": "array",
           "default": [
-            "html"
+            "html",
+            "raw"
           ],
-          "description": "Template tag names where Nix autocomplete should be active.",
+          "description": "Template tag names where Nix autocomplete should be active (html`...` tagged templates and raw(`...`) function-wrapped templates).",
           "items": {
             "type": "string"
           }
